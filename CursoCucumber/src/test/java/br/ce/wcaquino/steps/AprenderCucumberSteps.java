@@ -1,3 +1,4 @@
+package br.ce.wcaquino.steps;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,7 +14,7 @@ import io.cucumber.java.pt.Quando;
 
 
 @SuppressWarnings("unused")
-public class AprenderCucumber {
+public class AprenderCucumberSteps {
 
 // public void que_criei_o_arquivo_corretamente() throws Throwable {
 	@Dado("que criei o arquivo corretamente$")
@@ -54,14 +55,11 @@ public class AprenderCucumber {
 	
 	Date entrega = new Date();
 	
-	@Dado("que a entrega é dia {int}\\/{int}\\/{int}")
-	public void queAEntregaÉDia(Integer dia, Integer mes, Integer ano) throws Throwable {
+	@Dado("que a entrega é dia (.*)$")
+	public void queAEntregaÉDia(Date data) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.DAY_OF_MONTH, dia);
-		cal.set(Calendar.MONTH, mes - 1);
-		cal.set(Calendar.YEAR, ano);
-		entrega = cal.getTime();
+		entrega = data;
+		System.out.println(entrega);
 	    throw new cucumber.api.PendingException();
 	}
 
@@ -92,6 +90,72 @@ public class AprenderCucumber {
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		String dataFormatada = format.format(entrega);
 		Assert.assertEquals(data, dataFormatada);
+	    throw new cucumber.api.PendingException();
+	}
+	
+	@Dado("que o ticket é AF{int}")
+	public void que_o_ticket_é_AF(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+	
+	@Dado("que o ticket é AB{int}")
+	public void que_o_ticket_é_AB(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Dado("que o ticket especial é AB{int}")
+	public void que_o_ticket_especial_é_AB(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Dado("que o valor da passagem é R$ {double}")
+	public void queOValorDaPassagemÉR$(Double valorPassagem) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Dado("que o nome do passageiro é {string}")
+	public void queONomeDoPassageiroÉ(String nomePassageiro) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Dado("que o telefone do passageiro é {int}{int}")
+	public String queOTelefoneDoPassageiroÉ(Integer num1, Integer num2) {
+	    // Write code here that turns the phrase above into concrete actions
+		throw new cucumber.api.PendingException();
+	}
+	
+	@Dado("que o ticket é CD{int}")
+	public void queOTicketÉCD(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Dado("que o ticket é AG{int}")
+	public void queOTicketÉAG(Integer int1) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Dado("que o valor da passagem é R$ {double}{double}")
+	public void queOValorDaPassagemÉR$(Double double1, Double double2) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Quando("criar os steps")
+	public void criarOsSteps() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new cucumber.api.PendingException();
+	}
+
+	@Então("o teste vai funcionar")
+	public void oTesteVaiFuncionar() {
+	    // Write code here that turns the phrase above into concrete actions
 	    throw new cucumber.api.PendingException();
 	}
 }
