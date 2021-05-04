@@ -1,11 +1,19 @@
 package br.ce.wcaquino.steps;
 
-import org.junit.Before;
-import org.junit.After;
+import io.cucumber.core.api.Scenario;
+import io.cucumber.java.After;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
@@ -41,6 +49,7 @@ public class InserirContasStep {
 		driver.findElement(By.tagName("button")).click();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Então("visualizo a página inicial")
 	public void visualizo_a_página_inicial() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
@@ -72,6 +81,7 @@ public class InserirContasStep {
 		driver.findElement(By.tagName("button")).click();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Então("a conta é inserida com sucesso")
 	public void a_conta_é_inserida_com_sucesso() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
@@ -79,10 +89,53 @@ public class InserirContasStep {
 		Assert.assertEquals("Conta adicionada com sucesso!", texto);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Então("sou notificado que o nome da conta é obrigatório")
 	public void sou_notificado_que_o_nome_da_conta_é_obrigatório() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 	    String texto = driver.findElement(By.xpath("//div[@class='alert alert-danger']")).getText();
 	    Assert.assertEquals("Informe o nome da conta", texto);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Então("sou notificado que já existe uma conta com esse nome")
+	public void sou_notificado_que_já_existe_uma_conta_com_esse_nome() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    String texto = driver.findElement(By.xpath("//div[@class='alert alert-danger'")).getText();
+	    Assert.assertEquals("Já existe uma conta com esse nome!", texto);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Então("recebo a mensagem {string}")
+	public void receboAMensagem(String arg1) throws Throwable {
+		// Write code here that turns the phrase above into concrete actions
+		String texto = driver.findElement(By.xpath("//div[starts-with(@class='alert alert-')]")).getText();
+	    Assert.assertEquals(arg1, texto);
+	}
+	
+	@Before(order = 10)
+	public void inicio() {
+		System.out.println("Começando aqui");
+	}
+	
+	@Before(order = 0)
+	public void inicio2() {
+		System.out.println("Começando aqui, parte 2");
+	}
+	
+	@After(order = 1)
+	public void screenshot(Scenario cenario) {
+		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(file, new File("target/screenshot/"+cenario.getId()+".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@After(order = 0)
+	public void fecharBrowser() {
+		driver.quit();
+		System.out.println("terminado");
 	}
 }
