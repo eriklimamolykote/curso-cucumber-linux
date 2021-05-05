@@ -1,4 +1,7 @@
+#Original code author: Francisco Wagner Costa Aquino (with adaptations)
+#Contact: https://www.udemy.com/user/francisco-wagner-costa-aquino/
 # language: pt
+@unitários
 Funcionalidade: Alugar Filme
 	Como um usuário
 	Eu quero cadastrar aluguéis de filmes

@@ -16,13 +16,23 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		features = "src/test/resources/features/",
 		glue = "br.ce.wcaquino.steps",
-		tags = {"@unitários"},
+		tags = {"funcionais"},
 		plugin = {"pretty", "html:target/report-html", "json:target/report.json"},
 		monochrome = false,
 		snippets = SnippetType.CAMELCASE,
 		dryRun = false,
 		strict = false
 		)
-public class RunnerTest {
+public class RunnerFuncionalTest {
 	
+	@BeforeClass
+	public static void reset() {
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://seubarriga.wcaquino.me/");
+		driver.findElement(By.id("email")).sendKeys("a@a");
+		driver.findElement(By.id("senha")).sendKeys("a");
+		driver.findElement(By.tagName("button")).click();
+		driver.findElement(By.linkText("reset")).click();
+		driver.quit();
+	}
 }

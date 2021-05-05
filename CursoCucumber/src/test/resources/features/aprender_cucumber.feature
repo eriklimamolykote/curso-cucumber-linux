@@ -1,5 +1,7 @@
+#Original code author: Francisco Wagner Costa Aquino (with adaptations)
+#Contact: https://www.udemy.com/user/francisco-wagner-costa-aquino/
 # language: pt
-@esse
+@unitários
 Funcionalidade: Aprender Cucumber
 	Como um aluno
 	Eu quero aprender a utilizar Cucumber
